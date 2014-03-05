@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+ @Styles.Render("~/Content/style.css")
+@using (Html.BeginForm()) {
+   
+      <div id="div1" >
+      <h4 id="">CONTACT ME</h4>
+        <div id="di1"class="editor-label">
+            <label>Name</label>
+        </div>
+        <div id="di2"class="editor-field">
+            <input id="inpu1"name="ame" placeholder="Name" />
+        </div>
+        <div id="di3"class="editor-label">
+            <label>E-mail</label>
+        </div>
+        <div id="di4"class="editor-field">
+            <input id="inpu2"name="email"placeholder="E-mail"/>
+        </div>
+          <div id="di7"class="editor-label">
+            <label>Subject</label>
+        </div>
+        <div id="di8"class="editor-field">
+            <input id="inpu"name="asunto"placeholder="Subject"/>
+        </div>
+        <div id="di9"class="editor-label">
+            <label>Commentary</label>
+        </div>
+        <div id="di10"class="editor-field">
+            <textarea id="text"cols=30 rows=10 name="commentary"> 
+             </textarea>
+        </div>
+           <br />
+        <p>
+            <button id="BtnEnviar">Enviar</button>
+        </p>
+    </div>
+    
+    <script type="text/javascript">
+        $("#BtnEnviar").click(function () {
+           
+          
+            $.ajax({
+                url: '/Home/Contac',
+                type: '',
+                data: { },
+            })
+  
+    });
+</script>
+}

@@ -4,13 +4,48 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/style.css")
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    @RenderBody()
-
+    @Scripts.Render("~/bundles/js/bootstrap") 
     @Scripts.Render("~/bundles/jquery")
+</head>
+    
+ 
+<body id="body">
+     <nav class="navbar navbar-inverse " role="navigation" id="nav">
+          
+            
+         <div id="menu">
+               <ul class="menu"id="a"><li><label  onclick="javascript:selectPage(H);"><a  href="/Home/Home" >Home</a></label></li></ul>   
+               <ul class="menu"id="b">  <li><label  onclick="javascript:selectPage(C);"><a  href="/Home/Contact" >Contact</a></label></li></ul>   
+               <ul class="menu"id="c">  <li><label  onclick="javascript:selectPage(Rd);"><a  href="/Home/Recomend" >Recommend</a></label></li></ul> 
+               <ul class="menu"id="d">  <li><label  onclick="javascript:selectPage(Rt);"><a  href="/Home/Recomendations" >Recommendations</a></label></li></ul> 
+
+         </div> 
+
+   
+     <script type="text/javascript">
+         function selectPage(page) {
+             var items = document.getElementById("menu").getElementsByTagName("label");
+             foreach(item in items)
+             {
+                 var a = e.target.id; 
+                 $(".menu li.active").removeClass("active");
+                 $(".menu #" + a).addClass("active"); 
+                 $(".content").css("display", "none");
+                 $("." + a).fadeIn();
+
+             }
+         }
+</script>
+   </nav>
+
+ 
+   @RenderBody()
     @RenderSection("scripts", required: false)
+
+     
 </body>
 </html>
