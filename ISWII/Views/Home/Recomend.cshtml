@@ -5,36 +5,49 @@
 @Styles.Render("~/Content/style.css")
 @using (Html.BeginForm()) {
    
-        <div id="div" >
+        <div id="divRecommend" >
         <h4 id="comentary">RECOMMENDATION</h4>
         <div id="div2"class="editor-label">
             <label>Name</label>
         </div>
         <div id="div3"class="editor-field">
-            <input id="input1" name="nombre"placeholder="Name"/>
+            <input id="input1" required type="text" name="nombre"placeholder="Write your name"/>
         </div>
             <div id="div4"class="editor-label">
             <label>Telephone</label>
         </div>
         <div id="div5"class="editor-field">
-            <input id="input2" name="telefono"placeholder="Telephone"/>
+            <input id="input2" required type="text" name="telefono" placeholder="Write your telephone"/>
         </div>
             <div id="div6"class="editor-label">
             <label>E-mail</label>
         </div>
         <div id="div7"class="editor-field">
-            <input id="input3" name="correoelectronico"placeholder="E-mail"/>
+            <input id="input3" required type="email" name="correoelectronico"placeholder="Write your e-mail"/>
         </div>
          <div id="div8"class="editor-label">
             <label>Comentary</label>
         </div>
         <div id="div9"class="editor-field">
-            <textarea id="text"cols=30 rows=10 name="comentario"> 
+            <textarea id="textArea" cols=30 rows=10 name="comentario"> 
              </textarea>
         </div>
             <br />
         <p>
-            <input id="BtnRecomend"type="submit" value="Send" />
+            <input id="BtnEnviar"type="submit" value="Send" />
         </p>
     </div>
+    
+    <script type="text/javascript">
+        $("#BtnEnviar").click(function () {
+           
+          
+            $.ajax({
+                url: '/Home/Recomendations',
+                type: '',
+                data: { },
+            })        
+    });
+</script>
+
 }

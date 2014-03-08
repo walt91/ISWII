@@ -26,40 +26,35 @@ namespace ISWII.Controllers
         }
 
         [HttpPost]
-        public ActionResult Recomend(string nombre = "", string telefono = "", string correoelectronico = "", string comentario = "")
+        public ActionResult Recomend(string name = "", string telephone = "", string email = "", string commentary = "")
         {
             
-            Recomend nueva = new Recomend();
-            nueva.nombre = nombre;
-            nueva.telefono = telefono;
-            nueva.correo = correoelectronico;
-            nueva.comentario = comentario;
+            Recomend newRecomend = new Recomend();
+            newRecomend.name = name;
+            newRecomend.telephone = telephone;
+            newRecomend.email = email;
+            newRecomend.commentary = commentary;
             if (ModelState.IsValid)
             {
-                db.Recomendations.Add(nueva);
+                db.Recomendations.Add(newRecomend);
                 db.SaveChanges();
-
             }
             return View();
         }
-
-        
 
         public ActionResult Contact()
         {
             return View();
         }
 
-
         [HttpPost]
-        public ActionResult Contact(string name = "", string email = "", string topic = "", string commentary = "")
+        public ActionResult Contact(string name = "", string email = "", string commentary = "")
         {
-
-            //datos del mensaje y el correo al que le vamos a enviar el mensaje
+            //Data from the message and the email to which you are going to send the message
             System.Net.Mail.MailMessage mmsg = new System.Net.Mail.MailMessage();
 
             mmsg.To.Add("walt.mendezs@gmail.com");
-            mmsg.Subject = topic;
+
             mmsg.SubjectEncoding = System.Text.Encoding.UTF8;
 
             mmsg.Body = "Send by: " + name + "\n" + "E-mail: " + email + "\n" + "Commentary: " + commentary;
@@ -68,28 +63,27 @@ namespace ISWII.Controllers
 
             mmsg.From = new System.Net.Mail.MailAddress(email);
             System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
-            cliente.Credentials =
-                new System.Net.NetworkCredential("walt.mendez@gmail.com", "huntertoto69");
+            cliente.Credentials = new System.Net.NetworkCredential("walt.mendezs@gmail.com", "piadmin12");
             cliente.Port = 587;
             cliente.EnableSsl = true;
             cliente.Host = "smtp.gmail.com";
            
-
             try
             {
-
-                cliente.Send(mmsg);//Enviamos el mensaje  
+                cliente.Send(mmsg);//Send the message 
             }
             catch (System.Net.Mail.SmtpException ex)
             {
 
-                // aqui todos los erros al no poder enviar el correo
+                // Here all the errors to the not being able to send the mail
             }
             return View();
         }
 
-        public ActionResult Recomendations()
+        public ActionResult Recommendations()
         {
+            List<Recomend> recommendations = db.Recomendations.ToList();
+            ViewBag.recommendations = recommendations;
             return View();
         }
 
